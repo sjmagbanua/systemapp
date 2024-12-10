@@ -10,8 +10,11 @@ class EmailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => EmailBloc(initialState: const EmailState()),
-      child: const Scaffold(
-        body: Column(
+      child:  Scaffold(
+        appBar: AppBar(
+          title: const Text('SYSTEM APP'),
+        ),
+        body: const Column(
           children: [EmailForm(), EmailFooter(),],
         ),
       ),
