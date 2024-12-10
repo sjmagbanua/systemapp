@@ -9,6 +9,8 @@ class EmailBloc extends Bloc<EmailEvent, EmailState> {
     required EmailState initialState,
   }) : super(initialState) {
     on<EmailChanged>(_emailChanged);
+    on<ProductsScreenCreated>(_productScreenCreated);
+
   }
 
   void _emailChanged(EmailChanged event, Emitter<EmailState> emit) {
@@ -31,5 +33,9 @@ class EmailBloc extends Bloc<EmailEvent, EmailState> {
         errorType: errorType,
       ),
     );
+  }
+
+  void _productScreenCreated(ProductsScreenCreated event, Emitter<EmailState> emit){
+    
   }
 }

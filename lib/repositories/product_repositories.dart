@@ -8,6 +8,7 @@ import 'package:systemapp/services/service.dart';
    Future<Result> product() async{
     var result = await _productService.products;
     // var body = jsonDecode(result)
+    print('here $result');
     return Result(data: result);
     }
   }
