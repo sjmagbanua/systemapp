@@ -1,7 +1,7 @@
 // ignore: depend_on_referenced_packages
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../../models/models.dart';
+import '../../../../models/models.dart';
 part 'email_state.freezed.dart';
 
 @freezed

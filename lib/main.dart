@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:systemapp/pages/onboarding/email/view/email_page.dart';
+import 'package:systemapp/pages/email/view/email_page.dart';
 import 'package:systemapp/repositories/product_repositories.dart';
 import 'package:systemapp/services/service.dart';
 

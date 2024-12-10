@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:systemapp/pages/onboarding/email/bloc/bloc.dart';
+import 'package:systemapp/pages/email/bloc/bloc.dart';
 
 class EmailForm extends StatefulWidget {
   const EmailForm({super.key});

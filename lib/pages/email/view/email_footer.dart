@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:systemapp/pages/onboarding/email/bloc/bloc.dart';
-import 'package:systemapp/pages/onboarding/email/view/view.dart';
+import 'package:systemapp/pages/email/bloc/bloc.dart';
+import 'package:systemapp/pages/email/view/view.dart';
 
 class EmailFooter extends StatelessWidget {
   const EmailFooter({super.key});
