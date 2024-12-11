@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:systemapp/pages/email/view/email_page.dart';
+import 'package:systemapp/pages/onboardingscreen/view/onboardingscreen_page.dart';
 import 'package:systemapp/repositories/product_repositories.dart';
 import 'package:systemapp/services/service.dart';
 
@@ -31,7 +32,7 @@ class _SystemAppState extends State<SystemApp> {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return const EmailPage();
+          return const OnboardingscreenPage();
         },
       ),
     ],
@@ -48,15 +49,51 @@ class _SystemAppState extends State<SystemApp> {
         title: 'Inventory app',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          inputDecorationTheme: InputDecorationTheme(
+                      focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(106),
+          ),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(106),
+              borderSide: BorderSide.none),
+          fillColor: const Color(0xFF52525B),
+          filled: true,
+          contentPadding: const EdgeInsets.symmetric(
+            vertical: 23,
+          ),
+          ),
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
-            // textTheme: TextTheme(),
-            // textButtonTheme: TextButtonThemeData(),
             buttonTheme: const ButtonThemeData(
               shape: CircleBorder(),
             ),
-            inputDecorationTheme: InputDecorationTheme(),
-            elevatedButtonTheme: ElevatedButtonThemeData(style: ButtonStyle())),
+            elevatedButtonTheme:  ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(36),
+            ),
+            elevation: 0,
+            backgroundColor: const Color(0xFFFFD700),
+            minimumSize: const Size(double.infinity, 65),
+            foregroundColor: const Color(0xFF171717),
+          ),
+        ),
+         outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            minimumSize: const Size(double.infinity, 65),
+            foregroundColor: const Color(0xFFFAFAFA),
+            side: const BorderSide(
+              width: 3,
+              color: Color(0xFFFFD700),
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(36),
+            ),
+          ),
+        ),
+        
+            ),
       ),
     );
   }
