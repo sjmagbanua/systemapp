@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:systemapp/pages/email/email.dart';
-import 'package:systemapp/pages/email/view/email_footer.dart';
 
 class EmailPage extends StatelessWidget {
   static const route = '/email';
@@ -18,38 +17,51 @@ class EmailPage extends StatelessWidget {
         listener: (context, state) {
           
         },
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text('Email'),
+        child: Container(
+            decoration: const BoxDecoration(
+            gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: [0.2, 0.8],
+            colors: [
+                    Color(0xFFF9FAFB),
+                    Color(0xFFD1D5DB),
+                  ],
           ),
-          body:LayoutBuilder(
-            builder: (context, constraints) {
-              final totalHeight = constraints.maxHeight;
-              // Calculate heights for 3/4 and 1/4 proportions
-              final emailFormHeight = totalHeight * 0.75;
-              final emailFooterHeight = totalHeight * 0.25;
-
-              return  CustomScrollView(
-              slivers: [
-                 SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: emailFormHeight,
-                    child: const EmailForm(),
-                    ),
-                 ),
-                 SliverFillRemaining(
-                  hasScrollBody: false,
+        ),
+          child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              centerTitle: true,
+              title: const Text('Email'),
+              leading: IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(
+                Icons.chevron_left,
+                color: Colors.yellow,
+                size: 35,
+              ),
+              ),
+            ),
+            body: const CustomScrollView(
+            slivers: [
+               SliverToBoxAdapter(
+                child:Padding(
+                  padding: EdgeInsets.fromLTRB(48,62,48,0),
+                  child: EmailForm(),
+                ),
+               ),
+               SliverFillRemaining(
+                child: Align(
+                  alignment: Alignment.bottomCenter,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      height: emailFooterHeight,
-                      child: const EmailFooter(),
-                    ),
+                    padding:EdgeInsets.fromLTRB(48,0,48,16),
+                    child: EmailFooter(),
                   ),
-                 ),
-              ],
-            );
-            },
+                ),
+               ),
+            ],
+            ),
           ),
         ),
       ),

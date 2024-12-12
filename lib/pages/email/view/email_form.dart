@@ -15,36 +15,27 @@ class _EmailFormState extends State<EmailForm> {
     var bloc = context.read<EmailBloc>();
     return  BlocBuilder<EmailBloc, EmailState>(
       builder: (context, state) {
-        return  Padding(
-          padding: const EdgeInsets.fromLTRB(8,0,8,0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              TextField(
-                onChanged:(value) {
-                  bloc.add(EmailChanged(value),);
-                } ,
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.grey,
-                  enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(106),
-                  borderSide: state.email.value.isNotEmpty ? const BorderSide(color: Colors.yellowAccent,
-                  width: 3
-                  ) : BorderSide.none,
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(106),
-                  borderSide: state.email.value.isNotEmpty ? const BorderSide(color: Colors.yellowAccent,
-                  width: 3                        
-                  ) : BorderSide.none,
-                ),
-                ),
-              ),
-             
-            ],
+        return  TextField(
+          onChanged:(value) {
+            bloc.add(EmailChanged(value),);
+          } ,
+          textAlign: TextAlign.center,
+          decoration: InputDecoration(
+            filled: true,
+            hintText: 'Email',
+            fillColor: Colors.grey,
+            enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(106),
+            borderSide: state.email.value.isNotEmpty ? const BorderSide(color: Colors.yellowAccent,
+            width: 3
+            ) : BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(106),
+            borderSide: state.email.value.isNotEmpty ? const BorderSide(color: Colors.yellowAccent,
+            width: 3                        
+            ) : BorderSide.none,
+          ),
           ),
         );
       },

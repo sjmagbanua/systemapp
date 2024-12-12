@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:systemapp/pages/email/view/email_page.dart';
 import 'package:systemapp/pages/onboardingscreen/view/onboardingscreen_page.dart';
+import 'package:systemapp/pages/password/password.dart';
 import 'package:systemapp/repositories/product_repositories.dart';
 import 'package:systemapp/services/service.dart';
 
@@ -34,10 +35,16 @@ class _SystemAppState extends State<SystemApp> {
           return const OnboardingscreenPage();
         },
       ),
-            GoRoute(
+      GoRoute(
         path: EmailPage.route,
         builder: (BuildContext context, GoRouterState state) {
           return const EmailPage();
+        },
+      ),
+      GoRoute(
+        path: PasswordPage.route,
+        builder: (BuildContext context, GoRouterState state) {
+          return const PasswordPage();
         },
       ),
     ],
