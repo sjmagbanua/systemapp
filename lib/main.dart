@@ -25,7 +25,6 @@ class SystemApp extends StatefulWidget {
 class _SystemAppState extends State<SystemApp> {
   // This widget is the root of your application.
 
-
   /// The route configuration.
   final GoRouter _router = GoRouter(
     routes: <RouteBase>[
@@ -33,6 +32,12 @@ class _SystemAppState extends State<SystemApp> {
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
           return const OnboardingscreenPage();
+        },
+      ),
+            GoRoute(
+        path: EmailPage.route,
+        builder: (BuildContext context, GoRouterState state) {
+          return const EmailPage();
         },
       ),
     ],

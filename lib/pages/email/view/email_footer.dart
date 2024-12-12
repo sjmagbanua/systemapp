@@ -15,7 +15,8 @@ class EmailFooter extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
-            // Text()
+            ElevatedButton(onPressed: () {            
+            }, child: const Text('Login'),)
           ],
         );
       },

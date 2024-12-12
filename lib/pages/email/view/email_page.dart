@@ -4,6 +4,8 @@ import 'package:systemapp/pages/email/email.dart';
 import 'package:systemapp/pages/email/view/email_footer.dart';
 
 class EmailPage extends StatelessWidget {
+  static const route = '/email';
+
   const EmailPage({super.key});
 
   @override
@@ -18,12 +20,12 @@ class EmailPage extends StatelessWidget {
         },
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('SYSTEM APP'),
+            title: const Text('Email'),
           ),
-          body: const Column(
-            children: [
-              EmailForm(),
-              EmailFooter(),
+          body:const CustomScrollView(
+            slivers: [
+               SliverToBoxAdapter(child: EmailForm(),),
+               SliverFillRemaining(child: EmailFooter(),),
             ],
           ),
         ),
