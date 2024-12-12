@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:systemapp/main.dart';
 import 'package:systemapp/pages/email/email.dart';
 
 class OnboardingscreenFooter extends StatelessWidget {
@@ -17,7 +16,7 @@ class OnboardingscreenFooter extends StatelessWidget {
         child: const Text('Login'),
       ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0,8,0,8),
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 child: ElevatedButton(
                         onPressed: () {  },
                         child: const Text('Register'),

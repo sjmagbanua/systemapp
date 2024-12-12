@@ -22,11 +22,34 @@ class EmailPage extends StatelessWidget {
           appBar: AppBar(
             title: const Text('Email'),
           ),
-          body:const CustomScrollView(
-            slivers: [
-               SliverToBoxAdapter(child: EmailForm(),),
-               SliverFillRemaining(child: EmailFooter(),),
-            ],
+          body:LayoutBuilder(
+            builder: (context, constraints) {
+              final totalHeight = constraints.maxHeight;
+              // Calculate heights for 3/4 and 1/4 proportions
+              final emailFormHeight = totalHeight * 0.75;
+              final emailFooterHeight = totalHeight * 0.25;
+
+              return  CustomScrollView(
+              slivers: [
+                 SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: emailFormHeight,
+                    child: const EmailForm(),
+                    ),
+                 ),
+                 SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      height: emailFooterHeight,
+                      child: const EmailFooter(),
+                    ),
+                  ),
+                 ),
+              ],
+            );
+            },
           ),
         ),
       ),

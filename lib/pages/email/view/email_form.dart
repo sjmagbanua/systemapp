@@ -21,48 +21,29 @@ class _EmailFormState extends State<EmailForm> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text('Email'),
               TextField(
                 onChanged:(value) {
                   bloc.add(EmailChanged(value),);
                 } ,
-                decoration: InputDecoration(enabledBorder: OutlineInputBorder(
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey,
+                  enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(106),
-                  borderSide: const BorderSide(color: Colors.yellowAccent,
+                  borderSide: state.email.value.isNotEmpty ? const BorderSide(color: Colors.yellowAccent,
                   width: 3
-                  ),
+                  ) : BorderSide.none,
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(106),
-                  borderSide: const BorderSide(color: Colors.yellowAccent,
+                  borderSide: state.email.value.isNotEmpty ? const BorderSide(color: Colors.yellowAccent,
                   width: 3                        
-                  ),
+                  ) : BorderSide.none,
                 ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16,),
-                child: TextField(
-                  style: const TextStyle(),
-                  onChanged:(value) {
-                    bloc.add(EmailChanged(value),);
-                  } ,
-                   decoration: InputDecoration(enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(106),
-                    borderSide: const BorderSide(color: Colors.yellowAccent,
-                    width: 3
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(106),
-                    borderSide: const BorderSide(color: Colors.yellowAccent,
-                    width: 3                
-                    ),
-                  ),
-                  ),
-                ),
-              ),
-              // Text(state.email.value)
+             
             ],
           ),
         );
