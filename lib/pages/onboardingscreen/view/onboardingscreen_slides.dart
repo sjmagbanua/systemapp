@@ -7,8 +7,11 @@ class OnboardingscreenSlides extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Image.asset(
-      Assets.logo
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8,80,8,8),
+      child: Image.asset(
+      Assets.sqilleoLogolight
+            ),
     );
   }
 }

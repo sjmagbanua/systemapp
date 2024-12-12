@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:systemapp/main.dart';
+import 'package:systemapp/pages/email/email.dart';
 
 class OnboardingscreenFooter extends StatelessWidget {
   const OnboardingscreenFooter({super.key});
@@ -8,14 +11,18 @@ class OnboardingscreenFooter extends StatelessWidget {
     return  Column(
       children: [
         ElevatedButton(
-        onPressed: () {  },
+        onPressed: () {
+          context.push(EmailPage.route);
+         },
         child: const Text('Login'),
-         style: ButtonStyle(),
       ),
-              ElevatedButton(
-        onPressed: () {  },
-        child: const Text('Register'),
-      ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0,8,0,8),
+                child: ElevatedButton(
+                        onPressed: () {  },
+                        child: const Text('Register'),
+                      ),
+              ),
       ],
     );
   }
