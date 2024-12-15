@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:systemapp/pages/email/view/email_page.dart';
-import 'package:systemapp/pages/onboardingscreen/view/onboardingscreen_page.dart';
+import 'package:systemapp/pages/home/view/home_page.dart';
 import 'package:systemapp/pages/password/password.dart';
 import 'package:systemapp/repositories/product_repositories.dart';
 import 'package:systemapp/services/service.dart';
@@ -32,7 +32,7 @@ class _SystemAppState extends State<SystemApp> {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return const OnboardingscreenPage();
+          return const HomePage();
         },
       ),
       GoRoute(
@@ -45,6 +45,12 @@ class _SystemAppState extends State<SystemApp> {
         path: PasswordPage.route,
         builder: (BuildContext context, GoRouterState state) {
           return const PasswordPage();
+        },
+      ),
+      GoRoute(
+        path: HomePage.route,
+        builder: (BuildContext context, GoRouterState state) {
+          return const HomePage();
         },
       ),
     ],

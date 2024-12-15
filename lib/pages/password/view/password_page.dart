@@ -15,29 +15,42 @@ class PasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => PasswordBloc(initialState: PasswordState()),
-      child: const Scaffold(
-        body: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: PasswordAppbar(),
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(48, 62, 48, 0),
-                child: PasswordForm(),
+      child: Container(
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: [0.2, 0.8],
+            colors: [
+                    Color(0xFFF9FAFB),
+                    Color(0xFFD1D5DB),
+                  ],
+          ),
+        ),
+        child: const Scaffold(
+          body: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: PasswordAppbar(),
               ),
-            ),
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: Align(
-                alignment: Alignment.bottomCenter,
+              SliverToBoxAdapter(
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(48, 0, 48, 16),
-                  child: PasswordFooter(),
+                  padding: EdgeInsets.fromLTRB(48, 62, 48, 0),
+                  child: PasswordForm(),
                 ),
               ),
-            )
-          ],
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(48, 0, 48, 16),
+                    child: PasswordFooter(),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

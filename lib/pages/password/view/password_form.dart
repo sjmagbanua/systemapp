@@ -13,7 +13,6 @@ class PasswordForm extends StatelessWidget {
         return TextField(
           onChanged: (value) {
             bloc.add(PasswordChanged(value));
-            print('pass $value');
           },
           textAlign: TextAlign.center,
           decoration: InputDecoration(
