@@ -1,23 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:systemapp/databases/todolist_database/daos/daos.dart';
+import 'package:systemapp/databases/todolist_database/todolist_database.dart';
 import 'package:systemapp/pages/email/view/email_page.dart';
 import 'package:systemapp/pages/home/view/home_page.dart';
 import 'package:systemapp/pages/password/password.dart';
-import 'package:systemapp/repositories/product_repositories.dart';
-import 'package:systemapp/services/service.dart';
+import 'package:systemapp/repositories/account_repository.dart';
+import 'package:systemapp/repositories/repositories.dart';
 
 void main() {
   var baseUrl = 'https://dummyjson.com';
+  var toDoListDatabase = TodolistDatabase('database.sqlite3');
 
-  runApp(  SystemApp( productRepositories: ProductRepositories(
-    ProductService(baseUrl:baseUrl )
-  ), ),);
+  // var todolistRepositories = TodolistRepositories(
+  //   todolistDao: TodosDao(toDoListDatabase),
+  //   );
+  // var accountRepository = AccountRepository(
+  //    accountDao: AccountDao(toDoListDatabase));
+  runApp( 
+     SystemApp( 
+    todolistRepositories: TodolistRepositories(
+    todolistDao: TodosDao(toDoListDatabase),
+
+      ),
+       accountRepository: AccountRepository(accountDao:AccountDao(toDoListDatabase),
+       ), 
+    ),
+  );
 }
 
 class SystemApp extends StatefulWidget {
-  final ProductRepositories productRepositories;
-  const SystemApp({super.key, required this.productRepositories,});
+  final TodolistRepositories todolistRepositories;
+  final AccountRepository accountRepository;
+  const SystemApp({super.key, required this.todolistRepositories, required this.accountRepository,});
 
   @override
   State<SystemApp> createState() => _SystemAppState();
@@ -60,11 +76,15 @@ class _SystemAppState extends State<SystemApp> {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider.value(value: widget.productRepositories,)
+        RepositoryProvider.value(
+          value: widget.todolistRepositories,
+        ),
+        RepositoryProvider.value(value: widget.accountRepository,
+        )
       ],
       child: MaterialApp.router(
         routerConfig: _router,
-        title: 'Inventory app',
+        title: 'TODO LIST',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           inputDecorationTheme: InputDecorationTheme(
@@ -109,9 +129,8 @@ class _SystemAppState extends State<SystemApp> {
               borderRadius: BorderRadius.circular(36),
             ),
           ),
+        ),   
         ),
-        
-            ),
       ),
     );
   }

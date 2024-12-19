@@ -8,7 +8,7 @@ class EmailForm extends StatefulWidget {
   @override
   State<EmailForm> createState() => _EmailFormState();
 }
-
+        
 class _EmailFormState extends State<EmailForm> {
   @override
   Widget build(BuildContext context) {

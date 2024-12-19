@@ -10,12 +10,7 @@ class HomeAppbar extends StatelessWidget {
               backgroundColor: Colors.transparent,
               // centerTitle: true,
               // title: const Text('Home'),
-              leading: const Column(
-                children: [
-                  Text('Hi Snickers'),
-                  Text('Whats up for today?'),
-                ],
-              ),
+
               actions: [
                 Image.asset(
 

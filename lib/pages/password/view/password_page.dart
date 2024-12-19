@@ -14,7 +14,7 @@ class PasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => PasswordBloc(initialState: PasswordState()),
+      create: (context) => PasswordBloc(initialState: const PasswordState()),
       child: Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(

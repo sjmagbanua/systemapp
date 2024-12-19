@@ -1,13 +1,15 @@
 abstract class EmailEvent {
-  EmailEvent();
+ const EmailEvent();
 }
 
 
 class EmailChanged extends EmailEvent{
   final String value;
-   EmailChanged(this.value);
+  const EmailChanged(this.value);
 }
 
-class ProductsScreenCreated extends EmailEvent{
-  ProductsScreenCreated();
+
+class LoginPressed extends EmailEvent{
+  final String text;
+  const LoginPressed(this.text);
 }

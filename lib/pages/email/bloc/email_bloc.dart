@@ -1,16 +1,18 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:systemapp/models/models.dart';
-
+import 'package:systemapp/repositories/repositories.dart';
 import 'bloc.dart';
 
+
 class EmailBloc extends Bloc<EmailEvent, EmailState> {
+  final AccountRepository _accountRepository;
   EmailBloc({
     required EmailState initialState,
-  }) : super(initialState) {
+    required AccountRepository accountRepository
+  }) : _accountRepository = accountRepository,
+  super(initialState) {
     on<EmailChanged>(_emailChanged);
-    on<ProductsScreenCreated>(_productScreenCreated);
-
+    on<LoginPressed>(_loginPressed);
   }
 
   void _emailChanged(EmailChanged event, Emitter<EmailState> emit) {
@@ -33,9 +35,15 @@ class EmailBloc extends Bloc<EmailEvent, EmailState> {
         errorType: errorType,
       ),
     );
+    print(state.email);
+
   }
 
-  void _productScreenCreated(ProductsScreenCreated event, Emitter<EmailState> emit){
-    
+    Future<void> _loginPressed(
+      LoginPressed event, Emitter<EmailState> emit) async {
+    await _accountRepository.add(
+      email: event.text
+    );
+    emit(state.copyWith.email(value: event.text));
   }
 }

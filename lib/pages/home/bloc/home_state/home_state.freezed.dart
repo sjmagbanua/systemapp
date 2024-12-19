@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$HomeState {
   DateTime? get selectedDay => throw _privateConstructorUsedError;
   dynamic get focusedDay => throw _privateConstructorUsedError;
+  String? get accounts => throw _privateConstructorUsedError;
+  TextFieldInput get email => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -31,7 +33,13 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({DateTime? selectedDay, dynamic focusedDay});
+  $Res call(
+      {DateTime? selectedDay,
+      dynamic focusedDay,
+      String? accounts,
+      TextFieldInput email});
+
+  $TextFieldInputCopyWith<$Res> get email;
 }
 
 /// @nodoc
@@ -51,6 +59,8 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   $Res call({
     Object? selectedDay = freezed,
     Object? focusedDay = freezed,
+    Object? accounts = freezed,
+    Object? email = null,
   }) {
     return _then(_value.copyWith(
       selectedDay: freezed == selectedDay
@@ -61,7 +71,25 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.focusedDay
           : focusedDay // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      accounts: freezed == accounts
+          ? _value.accounts
+          : accounts // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as TextFieldInput,
     ) as $Val);
+  }
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TextFieldInputCopyWith<$Res> get email {
+    return $TextFieldInputCopyWith<$Res>(_value.email, (value) {
+      return _then(_value.copyWith(email: value) as $Val);
+    });
   }
 }
 
@@ -73,7 +101,14 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DateTime? selectedDay, dynamic focusedDay});
+  $Res call(
+      {DateTime? selectedDay,
+      dynamic focusedDay,
+      String? accounts,
+      TextFieldInput email});
+
+  @override
+  $TextFieldInputCopyWith<$Res> get email;
 }
 
 /// @nodoc
@@ -91,6 +126,8 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   $Res call({
     Object? selectedDay = freezed,
     Object? focusedDay = freezed,
+    Object? accounts = freezed,
+    Object? email = null,
   }) {
     return _then(_$HomeStateImpl(
       selectedDay: freezed == selectedDay
@@ -98,6 +135,14 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           : selectedDay // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       focusedDay: freezed == focusedDay ? _value.focusedDay! : focusedDay,
+      accounts: freezed == accounts
+          ? _value.accounts
+          : accounts // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as TextFieldInput,
     ));
   }
 }
@@ -105,17 +150,26 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$HomeStateImpl implements _HomeState {
-  const _$HomeStateImpl({this.selectedDay, this.focusedDay = DateTime});
+  const _$HomeStateImpl(
+      {this.selectedDay,
+      this.focusedDay = DateTime,
+      this.accounts,
+      this.email = const TextFieldInput(errorType: ErrorType.empty)});
 
   @override
   final DateTime? selectedDay;
   @override
   @JsonKey()
   final dynamic focusedDay;
+  @override
+  final String? accounts;
+  @override
+  @JsonKey()
+  final TextFieldInput email;
 
   @override
   String toString() {
-    return 'HomeState(selectedDay: $selectedDay, focusedDay: $focusedDay)';
+    return 'HomeState(selectedDay: $selectedDay, focusedDay: $focusedDay, accounts: $accounts, email: $email)';
   }
 
   @override
@@ -126,12 +180,15 @@ class _$HomeStateImpl implements _HomeState {
             (identical(other.selectedDay, selectedDay) ||
                 other.selectedDay == selectedDay) &&
             const DeepCollectionEquality()
-                .equals(other.focusedDay, focusedDay));
+                .equals(other.focusedDay, focusedDay) &&
+            (identical(other.accounts, accounts) ||
+                other.accounts == accounts) &&
+            (identical(other.email, email) || other.email == email));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, selectedDay,
-      const DeepCollectionEquality().hash(focusedDay));
+      const DeepCollectionEquality().hash(focusedDay), accounts, email);
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -145,12 +202,18 @@ class _$HomeStateImpl implements _HomeState {
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
       {final DateTime? selectedDay,
-      final dynamic focusedDay}) = _$HomeStateImpl;
+      final dynamic focusedDay,
+      final String? accounts,
+      final TextFieldInput email}) = _$HomeStateImpl;
 
   @override
   DateTime? get selectedDay;
   @override
   dynamic get focusedDay;
+  @override
+  String? get accounts;
+  @override
+  TextFieldInput get email;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
