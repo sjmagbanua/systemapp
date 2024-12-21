@@ -9,8 +9,14 @@ import 'tables/tables.dart';
 part 'todolist_database.g.dart';
 
 @DriftDatabase(
-  tables: [AccountTable, TodoTable],
-  daos: [AccountDao, TodosDao]
+  tables: [
+    AccountTable, TaskTable
+    // Ensure this is properly defined in tables.dart
+  ],
+  daos: [
+    AccountDao, TaskDao
+    // Ensure this DAO is properly implemented
+  ],
 )
 class TodolistDatabase extends _$TodolistDatabase {
   final String databaseName;
@@ -19,13 +25,17 @@ class TodolistDatabase extends _$TodolistDatabase {
       : super(_openConnectionSavedDB(databaseName));
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 10; // Increment when schema changes
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
+        onCreate: (m) async {
+          await m.createAll(); // Creates all defined tables
+        },
         onUpgrade: (m, from, to) async {
-          if (from == 1) {
-            await m.createTable(todoTable);
+          // Handle migration logic for existing users
+          if (from < 10) {
+            await m.createTable(taskTable); // Example for creating a new table
           }
         },
       );
@@ -34,8 +44,11 @@ class TodolistDatabase extends _$TodolistDatabase {
 LazyDatabase _openConnectionSavedDB(String databaseName) {
   return LazyDatabase(
     () async {
+      // Retrieve application documents directory
       final dbFolder = await getApplicationDocumentsDirectory();
+      // Define database file path
       final file = File(p.join(dbFolder.path, databaseName));
+      // Initialize Drift database with logs enabled
       return NativeDatabase.createInBackground(file, logStatements: true);
     },
   );
