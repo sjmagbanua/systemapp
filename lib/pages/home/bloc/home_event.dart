@@ -25,3 +25,13 @@ class AddToDoPressed extends HomeEvent{
   final String text;
   const AddToDoPressed(this.text);
 }
+
+class UpdateTodoPressed extends HomeEvent{
+  final String text;
+  const UpdateTodoPressed(this.text);
+}
+
+class DeleteTodoPressed extends HomeEvent{
+  final int? id;
+  const DeleteTodoPressed(this.id);
+}

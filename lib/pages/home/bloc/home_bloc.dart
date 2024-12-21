@@ -5,13 +5,12 @@ import 'package:systemapp/pages/home/bloc/bloc.dart';
 import 'package:systemapp/repositories/repositories.dart';
 
 class HomeBloc extends Bloc<HomeEvent,HomeState>{
-  final AccountRepository _accountRepository;
   final TodolistRepositories _todolistRepositories;
   HomeBloc({
     required AccountRepository accountRepository,
     required TodolistRepositories todolistRepositories,
     required HomeState initialState,
-  }) : _accountRepository = accountRepository,
+  }) : 
   _todolistRepositories = todolistRepositories,
   super(initialState){
     on<OnSelectedDay>(_onSelectedDay);
@@ -19,6 +18,8 @@ class HomeBloc extends Bloc<HomeEvent,HomeState>{
     on<ScreenCreated>(_screenCreated);
     on<TextFormChanged>(_textFormChanged);
     on<AddToDoPressed>(_addTodoPressed);
+    // on<UpdateTodoPressed>(_updateTodoPressed);
+    on<DeleteTodoPressed>(_deleteTodoPressed);
 
   }
 
@@ -35,13 +36,13 @@ class HomeBloc extends Bloc<HomeEvent,HomeState>{
     // var accounts = await _accountRepository.accounts();
     var todos = await _todolistRepositories.todos();
     // print('accounts: $accounts');
+    // var id = todos.indexOf(element)
     if(todos!.isEmpty){
       print('empty');
     }else{ 
     print('todos: $todos');
-
     }
-    // emit(state.copyWith());
+    emit(state.copyWith(todos: todos, ));
   }
 
   void _textFormChanged(TextFormChanged event, Emitter<HomeState> emit ){
@@ -67,8 +68,24 @@ class HomeBloc extends Bloc<HomeEvent,HomeState>{
   Future<void> _addTodoPressed(
     AddToDoPressed event, Emitter<HomeState> emit) async{
     await _todolistRepositories.add(
+      
       email: event.text
     );
     emit(state.copyWith.email(value: event.text));
+  }
+
+  // Future<void> _updateTodoPressed(UpdateTodoPressed event, Emitter<HomeState> emit)async{
+  //   await _todolistRepositories.update(
+  //     email: event.text
+  //   );
+  //   emit(state.copyWith.email(value: event.text));
+  // }
+
+  Future<int?> _deleteTodoPressed(DeleteTodoPressed event, Emitter<HomeState> emit) async{
+    await _todolistRepositories.delete(
+      id: event.id
+    );
+
+    return null;
   }
 }

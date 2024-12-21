@@ -20,6 +20,8 @@ mixin _$HomeState {
   dynamic get focusedDay => throw _privateConstructorUsedError;
   String? get accounts => throw _privateConstructorUsedError;
   TextFieldInput get email => throw _privateConstructorUsedError;
+  int? get todoId => throw _privateConstructorUsedError;
+  List<Todo?> get todos => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -37,7 +39,9 @@ abstract class $HomeStateCopyWith<$Res> {
       {DateTime? selectedDay,
       dynamic focusedDay,
       String? accounts,
-      TextFieldInput email});
+      TextFieldInput email,
+      int? todoId,
+      List<Todo?> todos});
 
   $TextFieldInputCopyWith<$Res> get email;
 }
@@ -61,6 +65,8 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? focusedDay = freezed,
     Object? accounts = freezed,
     Object? email = null,
+    Object? todoId = freezed,
+    Object? todos = null,
   }) {
     return _then(_value.copyWith(
       selectedDay: freezed == selectedDay
@@ -79,6 +85,14 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as TextFieldInput,
+      todoId: freezed == todoId
+          ? _value.todoId
+          : todoId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      todos: null == todos
+          ? _value.todos
+          : todos // ignore: cast_nullable_to_non_nullable
+              as List<Todo?>,
     ) as $Val);
   }
 
@@ -105,7 +119,9 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       {DateTime? selectedDay,
       dynamic focusedDay,
       String? accounts,
-      TextFieldInput email});
+      TextFieldInput email,
+      int? todoId,
+      List<Todo?> todos});
 
   @override
   $TextFieldInputCopyWith<$Res> get email;
@@ -128,6 +144,8 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? focusedDay = freezed,
     Object? accounts = freezed,
     Object? email = null,
+    Object? todoId = freezed,
+    Object? todos = null,
   }) {
     return _then(_$HomeStateImpl(
       selectedDay: freezed == selectedDay
@@ -143,6 +161,14 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as TextFieldInput,
+      todoId: freezed == todoId
+          ? _value.todoId
+          : todoId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      todos: null == todos
+          ? _value._todos
+          : todos // ignore: cast_nullable_to_non_nullable
+              as List<Todo?>,
     ));
   }
 }
@@ -154,7 +180,10 @@ class _$HomeStateImpl implements _HomeState {
       {this.selectedDay,
       this.focusedDay = DateTime,
       this.accounts,
-      this.email = const TextFieldInput(errorType: ErrorType.empty)});
+      this.email = const TextFieldInput(errorType: ErrorType.empty),
+      this.todoId,
+      final List<Todo?> todos = const []})
+      : _todos = todos;
 
   @override
   final DateTime? selectedDay;
@@ -166,10 +195,20 @@ class _$HomeStateImpl implements _HomeState {
   @override
   @JsonKey()
   final TextFieldInput email;
+  @override
+  final int? todoId;
+  final List<Todo?> _todos;
+  @override
+  @JsonKey()
+  List<Todo?> get todos {
+    if (_todos is EqualUnmodifiableListView) return _todos;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_todos);
+  }
 
   @override
   String toString() {
-    return 'HomeState(selectedDay: $selectedDay, focusedDay: $focusedDay, accounts: $accounts, email: $email)';
+    return 'HomeState(selectedDay: $selectedDay, focusedDay: $focusedDay, accounts: $accounts, email: $email, todoId: $todoId, todos: $todos)';
   }
 
   @override
@@ -183,12 +222,20 @@ class _$HomeStateImpl implements _HomeState {
                 .equals(other.focusedDay, focusedDay) &&
             (identical(other.accounts, accounts) ||
                 other.accounts == accounts) &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.todoId, todoId) || other.todoId == todoId) &&
+            const DeepCollectionEquality().equals(other._todos, _todos));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, selectedDay,
-      const DeepCollectionEquality().hash(focusedDay), accounts, email);
+  int get hashCode => Object.hash(
+      runtimeType,
+      selectedDay,
+      const DeepCollectionEquality().hash(focusedDay),
+      accounts,
+      email,
+      todoId,
+      const DeepCollectionEquality().hash(_todos));
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -204,7 +251,9 @@ abstract class _HomeState implements HomeState {
       {final DateTime? selectedDay,
       final dynamic focusedDay,
       final String? accounts,
-      final TextFieldInput email}) = _$HomeStateImpl;
+      final TextFieldInput email,
+      final int? todoId,
+      final List<Todo?> todos}) = _$HomeStateImpl;
 
   @override
   DateTime? get selectedDay;
@@ -214,6 +263,10 @@ abstract class _HomeState implements HomeState {
   String? get accounts;
   @override
   TextFieldInput get email;
+  @override
+  int? get todoId;
+  @override
+  List<Todo?> get todos;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.

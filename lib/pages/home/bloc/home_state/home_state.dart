@@ -14,5 +14,7 @@ class HomeState with _$HomeState {
       errorType: ErrorType.empty,
     ))
     TextFieldInput email,
+    int? todoId,
+    @Default([]) List<Todo?> todos,
   }) = _HomeState;
 }

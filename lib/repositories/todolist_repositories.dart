@@ -1,53 +1,45 @@
 import 'package:drift/drift.dart';
 import 'package:systemapp/databases/todolist_database/daos/daos.dart';
 import 'package:systemapp/databases/todolist_database/todolist_database.dart';
+import 'package:systemapp/models/todo/todo.dart';
 
 class TodolistRepositories{
-  final TodosDao _todolistDao;
+  final TaskDao _taskDao;
   const TodolistRepositories(
     {
-      required TodosDao todolistDao,
+      required TaskDao taskDao,
     }
   ):
-    _todolistDao = todolistDao
+    _taskDao = taskDao
   ;
 
-    Future<String?> todos() async {
-    var todos = await _todolistDao.todos();
-    print(await _todolistDao.todos());
-    if (todos.isEmpty) {
-      return null;
-    } else {
-      return todos.last.todo;
+    Future<List<Todo>?> todos() async {
+      var todos = await _taskDao.todos();
+      print('list : $todos' );
+      for(var todo in todos){
+        print(todo);
+        print(todo.id);
+      }
+      if (todos.isEmpty) {
+        return null;
+      } else {
+        // Return a list of emails from the todos list
+        // return todos.map((e) => e.email ?? '').toList();
+        return todos.map((task) => Todo(id: task.id, email: task.email)).toList();
+      }
     }
-  }
+
 
     Future<String?> add({String? email, int? userId }) async {
-    var todos = await _todolistDao.todos();
-     if (todos.isEmpty) {
-      await _todolistDao.add(
-        TodoTableCompanion.insert(id:userId ?? 0, todo: Value(email),),
+      await _taskDao.add(
+        TaskTableCompanion.insert( email: Value(email),),
       );
-    } else {
-      await _todolistDao.updateTable(
-        TodoTableCompanion(
-          id: Value(userId ?? 0),
-          todo: Value(email ?? ''
-          ),
-        ),
-      );
-    }
-    return null;
+      return null;
   }
 
-//   Future<String?> add({String? todo, int? id }) async {
-//   var todos = await _todolistDao.todos();
-//   if (todos.isEmpty) {
-//     await _todolistDao.add(
-//       TodoTableCompanion.insert(id: id ?? 0, todo: Value(todo)),
-//     );
-//   }
-//   return null;
-// }
+  Future<int?> delete({int? id}) async{
+    await _taskDao.removeTodo(id: id ?? 0);
+    return null;
+  }
 
 }
