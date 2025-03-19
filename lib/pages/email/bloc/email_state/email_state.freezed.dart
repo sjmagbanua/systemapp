@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$EmailState {
   TextFieldInput get email => throw _privateConstructorUsedError;
+  TextFieldInput get password => throw _privateConstructorUsedError;
 
   /// Create a copy of EmailState
   /// with the given fields replaced by the non-null parameter values.
@@ -31,9 +32,10 @@ abstract class $EmailStateCopyWith<$Res> {
           EmailState value, $Res Function(EmailState) then) =
       _$EmailStateCopyWithImpl<$Res, EmailState>;
   @useResult
-  $Res call({TextFieldInput email});
+  $Res call({TextFieldInput email, TextFieldInput password});
 
   $TextFieldInputCopyWith<$Res> get email;
+  $TextFieldInputCopyWith<$Res> get password;
 }
 
 /// @nodoc
@@ -52,11 +54,16 @@ class _$EmailStateCopyWithImpl<$Res, $Val extends EmailState>
   @override
   $Res call({
     Object? email = null,
+    Object? password = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as TextFieldInput,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
               as TextFieldInput,
     ) as $Val);
   }
@@ -70,6 +77,16 @@ class _$EmailStateCopyWithImpl<$Res, $Val extends EmailState>
       return _then(_value.copyWith(email: value) as $Val);
     });
   }
+
+  /// Create a copy of EmailState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TextFieldInputCopyWith<$Res> get password {
+    return $TextFieldInputCopyWith<$Res>(_value.password, (value) {
+      return _then(_value.copyWith(password: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -80,10 +97,12 @@ abstract class _$$EmailStateImplCopyWith<$Res>
       __$$EmailStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({TextFieldInput email});
+  $Res call({TextFieldInput email, TextFieldInput password});
 
   @override
   $TextFieldInputCopyWith<$Res> get email;
+  @override
+  $TextFieldInputCopyWith<$Res> get password;
 }
 
 /// @nodoc
@@ -100,11 +119,16 @@ class __$$EmailStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? email = null,
+    Object? password = null,
   }) {
     return _then(_$EmailStateImpl(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as TextFieldInput,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
               as TextFieldInput,
     ));
   }
@@ -114,15 +138,19 @@ class __$$EmailStateImplCopyWithImpl<$Res>
 
 class _$EmailStateImpl implements _EmailState {
   const _$EmailStateImpl(
-      {this.email = const TextFieldInput(errorType: ErrorType.empty)});
+      {this.email = const TextFieldInput(errorType: ErrorType.empty),
+      this.password = const TextFieldInput(errorType: ErrorType.empty)});
 
   @override
   @JsonKey()
   final TextFieldInput email;
+  @override
+  @JsonKey()
+  final TextFieldInput password;
 
   @override
   String toString() {
-    return 'EmailState(email: $email)';
+    return 'EmailState(email: $email, password: $password)';
   }
 
   @override
@@ -130,11 +158,13 @@ class _$EmailStateImpl implements _EmailState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EmailStateImpl &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email);
+  int get hashCode => Object.hash(runtimeType, email, password);
 
   /// Create a copy of EmailState
   /// with the given fields replaced by the non-null parameter values.
@@ -146,10 +176,14 @@ class _$EmailStateImpl implements _EmailState {
 }
 
 abstract class _EmailState implements EmailState {
-  const factory _EmailState({final TextFieldInput email}) = _$EmailStateImpl;
+  const factory _EmailState(
+      {final TextFieldInput email,
+      final TextFieldInput password}) = _$EmailStateImpl;
 
   @override
   TextFieldInput get email;
+  @override
+  TextFieldInput get password;
 
   /// Create a copy of EmailState
   /// with the given fields replaced by the non-null parameter values.

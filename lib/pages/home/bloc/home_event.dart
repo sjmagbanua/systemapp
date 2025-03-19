@@ -21,15 +21,21 @@ class TextFormChanged extends HomeEvent{
   const TextFormChanged(this.text);
 }
 
+// class TaskFormChanged extends HomeEvent{
+//   final String taskChanged;
+//   const TaskFormChanged(this.taskChanged);
+// }
+
 class AddToDoPressed extends HomeEvent{
   final String text;
   const AddToDoPressed(this.text);
 }
 
-class UpdateTodoPressed extends HomeEvent{
-  final String text;
-  const UpdateTodoPressed(this.text);
-}
+// class UpdateTodoPressed extends HomeEvent{
+//   final String task;
+//   final int todoId;
+//   const UpdateTodoPressed(this.task, this.todoId);
+// }
 
 class DeleteTodoPressed extends HomeEvent{
   final int? id;

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:systemapp/pages/home/bloc/bloc.dart';
 import 'package:systemapp/pages/home/home.dart';
 import 'package:systemapp/pages/home/view/home_form.dart';
 import 'package:systemapp/repositories/repositories.dart';
@@ -16,7 +15,8 @@ class HomePage extends StatelessWidget {
       create: (context) => HomeBloc(
         initialState: const HomeState(),
         accountRepository: RepositoryProvider.of<AccountRepository>(context),
-        todolistRepositories: RepositoryProvider.of<TodolistRepositories>(context),
+        todolistRepositories:
+            RepositoryProvider.of<TodolistRepositories>(context),
       )..add(const ScreenCreated()),
       child: Container(
         decoration: const BoxDecoration(
@@ -30,10 +30,13 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        child:const Scaffold(
+        child: const Scaffold(
           body: Column(
             children: [
-              HomeAppbar(),
+              Padding(
+                padding: EdgeInsets.only(bottom: 16),
+                child: HomeAppbar(),
+              ),
               // HomeCalendar(),
               HomeForm(),
             ],
@@ -43,4 +46,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
- 

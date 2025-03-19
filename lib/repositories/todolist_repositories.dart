@@ -30,10 +30,21 @@ class TodolistRepositories{
     }
 
 
-    Future<String?> add({String? email, int? userId }) async {
+  Future<String?> add({String? email, int? userId }) async {
       await _taskDao.add(
         TaskTableCompanion.insert( email: Value(email),),
       );
+      return null;
+  }
+
+  Future<int?> updateTask({String? task, int? id}) async{
+      await _taskDao.updateTask(
+        TaskTableCompanion(
+          id: Value(id ?? 0),
+          email: task != null && task.isNotEmpty ? Value(task) : const Value.absent(),
+        )
+      );
+      print('repo $task');
       return null;
   }
 

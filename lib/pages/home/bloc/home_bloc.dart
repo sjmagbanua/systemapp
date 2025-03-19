@@ -20,7 +20,7 @@ class HomeBloc extends Bloc<HomeEvent,HomeState>{
     on<AddToDoPressed>(_addTodoPressed);
     // on<UpdateTodoPressed>(_updateTodoPressed);
     on<DeleteTodoPressed>(_deleteTodoPressed);
-
+    // on<TaskFormChanged>(_taskFormChanged);
   }
 
   void _onSelectedDay(OnSelectedDay event, Emitter<HomeState> emiy){
@@ -33,16 +33,15 @@ class HomeBloc extends Bloc<HomeEvent,HomeState>{
   }
 
   void _screenCreated(ScreenCreated event, Emitter<HomeState> emit) async{
-    // var accounts = await _accountRepository.accounts();
+  
     var todos = await _todolistRepositories.todos();
-    // print('accounts: $accounts');
-    // var id = todos.indexOf(element)
-    if(todos!.isEmpty){
-      print('empty');
-    }else{ 
-    print('todos: $todos');
-    }
-    emit(state.copyWith(todos: todos, ));
+ 
+    // if(todos!.isEmpty){
+    //   print('empty');
+    // }else{ 
+    // print('todos: $todos');
+    // }
+    emit(state.copyWith(todos: todos ?? [] ));
   }
 
   void _textFormChanged(TextFormChanged event, Emitter<HomeState> emit ){
@@ -65,27 +64,45 @@ class HomeBloc extends Bloc<HomeEvent,HomeState>{
     print('here $text');
   }
 
+  // void _taskFormChanged(TaskFormChanged event, Emitter<HomeState> emit){
+  //   var task = event.taskChanged;
+  //   print('textfieldEdit: $task');
+  //   // emit(state.copyWith(taskUpdate: task));
+  //   // emit(state.copyWith(taskUpdate: event.taskChanged));
+  //   emit(state.copyWith.taskUpdate(value: event.taskChanged));
+    
+  // }
+
+  // Future<void> _updateTodoPressed(UpdateTodoPressed event, Emitter<HomeState> emit) async{
+  //   emit(state.copyWith(changeNickNameRequestStatus: RequestStatus.inProgress));
+
+  //   var result = await _todolistRepositories.updateTask(
+  //     id: event.todoId,
+  //     task: event.task
+  //   );
+  //   if(result != null){
+  //     emit(state.copyWith(changeNickNameRequestStatus: RequestStatus.success));
+  //     // emit(state.copyWith(taskUpdate: event.task));
+  //     emit(state.copyWith.taskUpdate(value: event.task));
+  //   }else{
+  //     emit(state.copyWith(changeNickNameRequestStatus: RequestStatus.failure));
+  //   }
+
+  // }
+
   Future<void> _addTodoPressed(
     AddToDoPressed event, Emitter<HomeState> emit) async{
     await _todolistRepositories.add(
-      
       email: event.text
     );
     emit(state.copyWith.email(value: event.text));
   }
 
-  // Future<void> _updateTodoPressed(UpdateTodoPressed event, Emitter<HomeState> emit)async{
-  //   await _todolistRepositories.update(
-  //     email: event.text
-  //   );
-  //   emit(state.copyWith.email(value: event.text));
-  // }
 
   Future<int?> _deleteTodoPressed(DeleteTodoPressed event, Emitter<HomeState> emit) async{
     await _todolistRepositories.delete(
       id: event.id
     );
-
     return null;
   }
 }

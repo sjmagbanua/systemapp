@@ -25,7 +25,7 @@ class TodolistDatabase extends _$TodolistDatabase {
       : super(_openConnectionSavedDB(databaseName));
 
   @override
-  int get schemaVersion => 10; // Increment when schema changes
+  int get schemaVersion => 12; // Increment when schema changes
 
   @override
   MigrationStrategy get migration => MigrationStrategy(

@@ -3,15 +3,15 @@ import 'package:systemapp/models/models.dart';
 import 'package:systemapp/repositories/repositories.dart';
 import 'bloc.dart';
 
-
 class EmailBloc extends Bloc<EmailEvent, EmailState> {
   final AccountRepository _accountRepository;
   EmailBloc({
     required EmailState initialState,
-    required AccountRepository accountRepository
-  }) : _accountRepository = accountRepository,
-  super(initialState) {
+    required AccountRepository accountRepository,
+  })  : _accountRepository = accountRepository,
+        super(initialState) {
     on<EmailChanged>(_emailChanged);
+    on<PasswordChanged>(_passwordChanged);
     on<LoginPressed>(_loginPressed);
   }
 
@@ -35,15 +35,29 @@ class EmailBloc extends Bloc<EmailEvent, EmailState> {
         errorType: errorType,
       ),
     );
-    print(state.email);
-
   }
 
-    Future<void> _loginPressed(
-      LoginPressed event, Emitter<EmailState> emit) async {
-    await _accountRepository.add(
-      email: event.text
+  void _passwordChanged(PasswordChanged event, Emitter<EmailState> emit) {
+    var password = event.password;
+    var errorType = ErrorType.empty;
+
+    if (password.isEmpty) {
+      errorType = ErrorType.empty;
+    } else {
+      errorType = ErrorType.none;
+    }
+    emit(
+      state.copyWith.password(
+        value: password,
+        errorType: errorType,
+      ),
     );
+    print('password: $password');
+  }
+
+  Future<void> _loginPressed(
+      LoginPressed event, Emitter<EmailState> emit) async {
+    await _accountRepository.add(email: event.text);
     emit(state.copyWith.email(value: event.text));
   }
 }

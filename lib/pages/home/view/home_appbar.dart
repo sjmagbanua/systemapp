@@ -6,17 +6,11 @@ class HomeAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  AppBar(
-              backgroundColor: Colors.transparent,
-              // centerTitle: true,
-              // title: const Text('Home'),
-
-              actions: [
-                Image.asset(
-
-                  Assets.logo      
-                )
-              ],
-            );
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      // centerTitle: true,
+      title: const Text('TODO LIST APP'),
+      actions: [Image.asset(Assets.todolistLogo)],
+    );
   }
 }

@@ -11,5 +11,9 @@ class EmailState with _$EmailState {
       errorType: ErrorType.empty,
     ))
     TextFieldInput email,
+    @Default(TextFieldInput(
+      errorType: ErrorType.empty,
+    ))
+    TextFieldInput password,
   }) = _EmailState;
 }

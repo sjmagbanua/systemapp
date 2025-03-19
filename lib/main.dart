@@ -6,7 +6,8 @@ import 'package:systemapp/databases/todolist_database/todolist_database.dart';
 import 'package:systemapp/pages/email/view/email_page.dart';
 import 'package:systemapp/pages/home/view/home_page.dart';
 import 'package:systemapp/pages/password/password.dart';
-import 'package:systemapp/repositories/account_repository.dart';
+import 'package:systemapp/pages/task/bloc/bloc.dart';
+import 'package:systemapp/pages/task/task.dart';
 import 'package:systemapp/repositories/repositories.dart';
 
 void main() {
@@ -20,12 +21,13 @@ void main() {
   //    accountDao: AccountDao(toDoListDatabase));
   runApp( 
      SystemApp( 
-    todolistRepositories: TodolistRepositories(taskDao: TaskDao(toDoListDatabase)
-    // todolistDao: TodosDao(toDoListDatabase),
+      todolistRepositories: TodolistRepositories(taskDao: TaskDao(toDoListDatabase)
+      // todolistDao: TodosDao(toDoListDatabase),
 
-      ),
-       accountRepository: AccountRepository(accountDao:AccountDao(toDoListDatabase),
+        ),
+        accountRepository: AccountRepository(accountDao:AccountDao(toDoListDatabase),
        ), 
+       
     ),
   );
 }
@@ -69,6 +71,12 @@ class _SystemAppState extends State<SystemApp> {
           return const HomePage();
         },
       ),
+      GoRoute(
+        path: TaskPage.route,
+        builder: (BuildContext context, GoRouterState state) {
+          return  TaskPage(initialState: state.extra as TaskState ,);
+        },
+      ),
     ],
   );
 
@@ -95,7 +103,7 @@ class _SystemAppState extends State<SystemApp> {
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(106),
               borderSide: BorderSide.none),
-          fillColor: const Color(0xFF52525B),
+          // fillColor: const Color(0xFF52525B),
           filled: true,
           contentPadding: const EdgeInsets.symmetric(
             vertical: 23,

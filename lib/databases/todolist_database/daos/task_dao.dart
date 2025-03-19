@@ -19,6 +19,12 @@ class TaskDao extends DatabaseAccessor<TodolistDatabase>
     await into(taskTable).insert(taskTableCompanion);
   }
 
+  Future<int> updateTask(TaskTableCompanion taskTableCompanion) async {
+    return await (update(taskTable)
+            ..where((tbl) => tbl.id.equals(taskTableCompanion.id.value)))
+          .write(taskTableCompanion);
+  }
+
   Future<int> removeTodo({required int id}) async {
     return (delete(taskTable)..where((tbl) => tbl.id.equals(id))).go();
   }

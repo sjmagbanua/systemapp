@@ -4,31 +4,31 @@ enum ResultStatus {
   none,
 }
 
-// enum RequestStatus {
-//   waiting,
-//   inProgress,
-//   success,
-//   failure,
-// }
+enum RequestStatus {
+  waiting,
+  inProgress,
+  success,
+  failure,
+}
 
 class Result<T> {
   final T? data;
-  // final int statusCode;
+  final int statusCode;
   Result({
     this.data,
-    // required this.statusCode,
+    required this.statusCode,
   });
 
-  // ResultStatus get resultStatus {
-  //   switch (statusCode) {
-  //     case 200:
-  //       return ResultStatus.success;
-  //     case 400:
-  //     case 401:
-  //     case 404:
-  //       return ResultStatus.error;
-  //     default:
-  //       return ResultStatus.none;
-  //   }
-  // }
+  ResultStatus get resultStatus {
+    switch (statusCode) {
+      case 200:
+        return ResultStatus.success;
+      case 400:
+      case 401:
+      case 404:
+        return ResultStatus.error;
+      default:
+        return ResultStatus.none;
+    }
+  }
 }

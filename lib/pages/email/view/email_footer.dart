@@ -15,7 +15,7 @@ class EmailFooter extends StatelessWidget {
           // context.push(PasswordPage.route);
           // bloc.add(LoginPressed(state.email.value));
           bloc.add(LoginPressed(state.email.value));
-        }, child: const Text('Next'),
+        }, child: const Text('Login'),
         );
       },
     );

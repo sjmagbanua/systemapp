@@ -6,17 +6,17 @@ class EmailAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-            backgroundColor: Colors.transparent,
-            centerTitle: true,
-            title: const Text('Email'),
-            leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: const Icon(
-              Icons.chevron_left,
-              color: Colors.yellow,
-              size: 35,
-            ),
-            ),
-          );
+      backgroundColor: Colors.transparent,
+      centerTitle: true,
+      title: const Text('Login'),
+      leading: IconButton(
+        onPressed: () => Navigator.pop(context),
+        icon: const Icon(
+          Icons.chevron_left,
+          color: Colors.yellow,
+          size: 35,
+        ),
+      ),
+    );
   }
 }
